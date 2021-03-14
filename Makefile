@@ -35,6 +35,7 @@ clean:
 
 fclean:	clean
 	@make fclean -C lib/cpp-ui --no-print-directory
+	@rm -f ${NAME}
 	@echo -e "\e[0;92mExecutable:\e[38;5;124m\tDeleted\e[0m"
 
 re:	fclean all
