@@ -15,6 +15,8 @@ class App
         App();
        ~App() = default;
 
+        void run(void);
+        
     private:
         sf::RenderWindow *      _window;
         sf::Keyboard::Key       _leaveKey;
