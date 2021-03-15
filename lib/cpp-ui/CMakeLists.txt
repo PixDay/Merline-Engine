@@ -1,15 +1,11 @@
 project(cpp-ui VERSION 1.0.0.0 LANGUAGES CXX)
 
-add_library(cpp-ui STATIC "")
+set(LIB_NAME cpp-ui)
 
-target_sources(cpp-ui 
-    PUBLIC
-    ui.hpp
-
-    PRIVATE
+add_library(${LIB_NAME} STATIC 
     ui.cpp
 )
 
-target_include_directories(cpp-ui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(cpp-ui PUBLIC sfml-system sfml-graphics sfml-window sfml-audio)
+target_link_libraries(${LIB_NAME} PUBLIC sfml-system sfml-graphics sfml-window)
