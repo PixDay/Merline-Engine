@@ -1,3 +1,3 @@
-set(BUILD_SHARED_LIBS OFF)
-add_subdirectory(cpp-core)
-add_subdirectory(cpp-ui)
+SET(BUILD_SHARED_LIBS OFF)
+ADD_SUBDIRECTORY(cpp-core)
+ADD_SUBDIRECTORY(cpp-ui)
