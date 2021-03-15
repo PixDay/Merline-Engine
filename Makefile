@@ -13,7 +13,7 @@ OBJECTS =	${SRC:.cpp=.o}
 
 NAME	=	a.out
 
-CFLAGS	+=	-Wall -Wextra -pedantic -Ofast -I./include -I ./lib/cpp-ui -I ./lib/cpp-core
+CFLAGS	+=	-Wall -Wextra -pedantic -Ofast -I./include -I ./lib/cpp-core/include -I ./lib/cpp-ui/include
 
 LDFLAGS	+=	-lsfml-window -lsfml-system -lsfml-graphics -lsfml-audio -L./lib/cpp-ui -lcpp-ui -L./lib/cpp-core -lcpp-core
 
