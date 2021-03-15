@@ -7,7 +7,7 @@
 
 CC 		=	g++
 
-SRCS	=	ui.cpp
+SRCS	=	src/ui.cpp
 
 OBJ	=	${SRCS:.cpp=.o}
 
