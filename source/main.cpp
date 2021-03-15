@@ -1,6 +1,6 @@
 #include <iostream>
-#include "ui.hpp"
 #include "core.hpp"
+#include "ui.hpp"
 
 int main()
 {
