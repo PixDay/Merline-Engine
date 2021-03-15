@@ -24,17 +24,20 @@ all:	${NAME}
 	@${CC} -c ${CFLAGS} $< -o $@
 
 ${NAME}:	${OBJECTS}
-	@make -C lib/cpp-ui --no-print-directory
+	@make -C lib/cpp-core 	--no-print-directory
+	@make -C lib/cpp-ui 	--no-print-directory
 	@${CC} -o ${NAME} ${OBJECTS} ${LDFLAGS}
 	@echo -e "\e[0;92mDone ${NAME}\e[0m"
 
 clean:
-	@make clean -C lib/cpp-ui --no-print-directory
+	@make clean -C lib/cpp-core --no-print-directory
+	@make clean -C lib/cpp-ui 	--no-print-directory
 	@rm -f ${OBJECTS}
 	@echo -e "\e[38;5;208mObjects:\e[38;5;124m\tDeleted\e[0m"
 
 fclean:	clean
-	@make fclean -C lib/cpp-ui --no-print-directory
+	@make fclean -C lib/cpp-core --no-print-directory
+	@make fclean -C lib/cpp-ui 	 --no-print-directory
 	@rm -f ${NAME}
 	@echo -e "\e[0;92mExecutable:\e[38;5;124m\tDeleted\e[0m"
 
