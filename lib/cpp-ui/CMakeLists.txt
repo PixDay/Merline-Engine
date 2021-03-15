@@ -12,4 +12,4 @@ target_sources(cpp-ui
 
 target_include_directories(cpp-ui PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(cpp-ui PUBLIC sfml-system sfml-graphics sfml-window)
+target_link_libraries(cpp-ui PUBLIC sfml-system sfml-graphics sfml-window sfml-audio)
