@@ -8,6 +8,9 @@ INCLUDE_DIRECTORIES (
 
 ADD_LIBRARY(${LIB_NAME} STATIC 
     src/core.cpp
+    src/gameObject.cpp
+    src/scene.cpp
+    src/sceneManager.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(${LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
