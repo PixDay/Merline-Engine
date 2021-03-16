@@ -19,7 +19,6 @@ class GameObject
         void setTag(std::string const &tag);
         void setType(std::string const &type);
         void setPosition(sf::Vector2f const &position);
-        void setPosition(sf::Vector2f const &position);
         void setScale(sf::Vector2f const &scale);
         void setOrigin(sf::Vector2f const &origin);
         void setLayout(size_t const &layout);
