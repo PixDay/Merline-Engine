@@ -13,9 +13,7 @@ class SceneManager
 {
     public:
         SceneManager();
-        ~SceneManager();
-        
-        void makeTransition();
+       ~SceneManager() = default;
 
         /* ADDERS */
         void addScene(std::string const &name);
@@ -28,14 +26,8 @@ class SceneManager
         /* SETTERS */
         void setCurrentScene(size_t const &scene);
         void setCurrentScene(std::string const &name);
-        void setCurrentSceneTransition(std::string const &name);
-        void setTransitionTexture(std::string const &name);
-        void setSystemCursor();
-        void setEngineCursor();
-        void setPersonalCursor(std::string const &texture);
 
         /* GETTERS */
-        sf::RenderWindow *      getWindow()                                                 const;
         std::vector<Scene *>    getScenes()                                                 const;
         size_t                  getCurrentScene()                                           const;
         size_t                  getScene(std::string const &name)                           const;
@@ -44,5 +36,4 @@ class SceneManager
     private:
         size_t                  _currentScene;
         std::vector<Scene *>    _scenes;
-        std::string             _transitionTo;
 };
