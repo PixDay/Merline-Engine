@@ -8,6 +8,7 @@
 #pragma once
 
 #include "SFML/Graphics.hpp"
+#include "sceneManager.hpp"
 
 class App 
 {
@@ -20,5 +21,5 @@ class App
     private:
         sf::RenderWindow *      _window;
         sf::Keyboard::Key       _leaveKey;
-
+        SceneManager            _sceneManager;
 };
