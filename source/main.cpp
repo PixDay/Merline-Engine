@@ -1,9 +1,7 @@
 #include <iostream>
-#include "core.hpp"
-#include "gameObject.hpp"
+#include "core.h"
 #include "ui.hpp"
-#include "scene.hpp"
-#include "sceneManager.hpp"
+
 
 int main()
 {
