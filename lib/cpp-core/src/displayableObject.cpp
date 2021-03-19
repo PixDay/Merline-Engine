@@ -17,7 +17,7 @@ _visibleTime(-1.0f)
     _sprite->setTexture(_texture, false);
 }
 
-DisplayableObject::DisplayableObject(std::string const &texture, void (function)(GameObject *)):
+DisplayableObject::DisplayableObject(std::string const &texture, std::function<void(GameObject *)> function):
 _sprite(new sf::Sprite()),
 _visibleTime(-1.0f)
 {
