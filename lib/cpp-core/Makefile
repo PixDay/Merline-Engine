@@ -7,10 +7,11 @@
 
 CC 		=	g++
 
-SRCS	=	src/core.cpp		\
-			src/gameObject.cpp	\
-			src/scene.cpp		\
-			src/sceneManager.cpp
+SRCS	=	src/core.cpp							\
+				src/gameObject.cpp				\
+				src/displayableObject.cpp	\
+				src/scene.cpp							\
+				src/sceneManager.cpp
 
 OBJ	=	${SRCS:.cpp=.o}
 
