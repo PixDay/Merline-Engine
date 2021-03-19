@@ -11,6 +11,7 @@ App::App():
     _window(new sf::RenderWindow(sf::VideoMode(1920, 1080), "SFML Engine", sf::Style::Fullscreen)),
     _leaveKey(sf::Keyboard::Key::Escape)
 {
+    _window->setFramerateLimit(144);
 };
 
 void App::run(void)
