@@ -21,7 +21,7 @@ _function(nullptr)
 {
 }
 
-GameObject::GameObject(void (function)(GameObject *)):
+GameObject::GameObject(std::function<void(GameObject *)> function):
 _tag("default"),
 _type("GameObject"),
 _position({0.0f, 0.0f}),
@@ -95,7 +95,7 @@ void GameObject::setActive(bool const &active)
     _active = active;
 }
 
-void GameObject::setFunction(void (function)(GameObject *))
+void GameObject::setFunction(std::function<void(GameObject *)> function)
 {
     _function = function;
 }
