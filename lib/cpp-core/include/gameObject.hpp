@@ -21,6 +21,8 @@ class GameObject
         void setPosition(sf::Vector2f const &position);
         void setScale(sf::Vector2f const &scale);
         void setOrigin(sf::Vector2f const &origin);
+        void setHitbox(sf::Vector2f const &hitbox);
+        void setHitbox(float const &x, float const &y);
         void setLayout(size_t const &layout);
         void setIndex(size_t const &index);
         void setActive(bool const &active);
@@ -30,6 +32,8 @@ class GameObject
         std::string     getType(void)       const;
         sf::Vector2f    getPosition(void)   const;
         sf::Vector2f    getScale(void)      const;
+        sf::Vector2f    getOrigin(void)     const;
+        sf::Vector2f    getHitbox(void)     const;
         size_t          getLayout(void)     const;
         size_t          getIndex(void)      const;
         bool            getActive(void)     const;
@@ -40,6 +44,7 @@ class GameObject
         sf::Vector2f    _position;
         sf::Vector2f    _scale;
         sf::Vector2f    _origin;
+        sf::Vector2f    _hitbox;
         size_t          _layout;
         size_t          _index;
         bool            _active;
