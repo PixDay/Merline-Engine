@@ -9,5 +9,6 @@
 
 #include "core.hpp"
 #include "gameObject.hpp"
+#include "displayableObject.hpp"
 #include "scene.hpp"
 #include "sceneManager.hpp"
