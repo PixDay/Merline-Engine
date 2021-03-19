@@ -13,8 +13,8 @@ class DisplayableObject : public GameObject
 {
   public:
     DisplayableObject(std::string const &texture);
-    DisplayableObject(std::string const &texture, void (function)(DisplayableObject *));
-    ~DisplayableObject();
+    DisplayableObject(std::string const &texture, void (function)(GameObject *));
+   ~DisplayableObject();
 
     void update();
     
@@ -33,7 +33,6 @@ class DisplayableObject : public GameObject
     void setHitbox(float const &x, float const &y);
     void setAngle(float const &angle);
     void setAngleByCenter(float const &angle);
-    void setFunction(void (function)(DisplayableObject *));
     void setVisibleTime(float time);
 
     /* GETTERS */
@@ -49,6 +48,5 @@ private:
     sf::Clock                           _clock;
     float                               _angle;
     float                               _visibleTime;
-    void                                (*_function)(DisplayableObject *self);
     std::vector<DisplayableObject *>    _objects;
 };
