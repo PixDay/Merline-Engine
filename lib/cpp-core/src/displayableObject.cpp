@@ -78,6 +78,12 @@ void DisplayableObject::setTexture(sf::Texture const &texture)
     _sprite->setTexture(texture, false);
 }
 
+void DisplayableObject::setPosition(sf::Vector2f const &position)
+{
+    GameObject::setPosition(position);
+    _sprite->setPosition(position);
+}
+
 void DisplayableObject::setOrigin(sf::Vector2f const &origin)
 {
     GameObject::setOrigin(origin);

@@ -31,6 +31,7 @@ void App::run(void)
 void App::draw(void)
 {
     for (auto displayableElement : _sceneManager.getScenes()[_sceneManager.getCurrentScene()]->getGameObjects()) {
+        displayableElement->update();
         if (displayableElement->getType() == "DisplayableObject" && (static_cast<DisplayableObject *>(displayableElement)->getActive())) {
             static_cast<DisplayableObject *>(displayableElement)->update();
             _window->draw(*(static_cast<DisplayableObject *>(displayableElement)->getSprite()));

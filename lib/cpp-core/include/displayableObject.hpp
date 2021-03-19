@@ -27,6 +27,7 @@ class DisplayableObject : public GameObject
     /* SETTERS */
     void setTexture(std::string const &texture);
     void setTexture(sf::Texture const &texture);
+    void setPosition(sf::Vector2f const &position);
     void setOrigin(sf::Vector2f const &origin);
     void setScale(sf::Vector2f const &scale);
     void setHitbox(sf::Vector2f const &hitbox);

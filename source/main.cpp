@@ -1,12 +1,21 @@
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 #include "core.h"
 #include "ui.hpp"
 
 
-void printer(GameObject *self)
+void snakeMovement(GameObject *self)
 {
   (void)self;
-  std::cout << "Coucou" << std::endl;
+}
+
+void apple(GameObject *self)
+{
+    static sf::Vector2f position = {(float)(rand() % 1870), (float)(rand() % 1030)};
+
+    std::cout << position.x << "; " << position.y << std::endl;
+    (static_cast<DisplayableObject *>(self))->setPosition(position);
 }
 
 
@@ -14,9 +23,11 @@ int main()
 {
     App app = App();    
 
-    app.getSceneManager().addScene("Menu");
-    app.getSceneManager().setCurrentScene("Menu");
-    app.getSceneManager().addObject(new DisplayableObject("source/background.jpg", &printer));
+    srand (time(NULL));
+    app.addScene("Menu");
+    app.setCurrentScene("Menu");
+    app.addObject(new DisplayableObject("img/green.png", &snakeMovement));
+    app.addObject(new DisplayableObject("img/red.png", &apple));
     app.run();
     return 0;
 }
