@@ -9,8 +9,7 @@
 
 DisplayableObject::DisplayableObject(std::string const &texture):
 _sprite(new sf::Sprite()),
-_visibleTime(-1.0f),
-_function(nullptr)
+_visibleTime(-1.0f)
 {
     this->setType("DisplayableObject");
     
@@ -18,15 +17,15 @@ _function(nullptr)
     _sprite->setTexture(_texture, false);
 }
 
-DisplayableObject::DisplayableObject(std::string const &texture, void (function)(DisplayableObject *)):
+DisplayableObject::DisplayableObject(std::string const &texture, void (function)(GameObject *)):
 _sprite(new sf::Sprite()),
-_visibleTime(-1.0f),
-_function(_function)
+_visibleTime(-1.0f)
 {
     this->setType("DisplayableObject");
 
     _texture.loadFromFile(texture);
     _sprite->setTexture(_texture, false);
+    GameObject::setFunction(function);
 }
 
 DisplayableObject::~DisplayableObject()
@@ -39,8 +38,6 @@ void DisplayableObject::update()
     if (_visibleTime > 0.0f && _clock.getElapsedTime().asSeconds() >= _visibleTime) {
         this->setActive(false);
     }
-    if (_function != nullptr)
-        _function(this);
 }
 
 /* ADDERS */
@@ -119,11 +116,6 @@ void DisplayableObject::setAngleByCenter(float const &angle)
     _angle = angle;
     _sprite->setRotation(_angle);
     _sprite->setOrigin(GameObject::getOrigin());
-}
-
-void DisplayableObject::setFunction(void (*function)(DisplayableObject *))
-{
-    _function = function;
 }
 
 void DisplayableObject::setVisibleTime(float time)
