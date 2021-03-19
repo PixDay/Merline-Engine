@@ -13,7 +13,7 @@ class DisplayableObject : public GameObject
 {
   public:
     DisplayableObject(std::string const &texture);
-    DisplayableObject(std::string const &texture, void (function)(GameObject *));
+    DisplayableObject(std::string const &texture, std::function<void(GameObject *)>);
    ~DisplayableObject();
 
     void update();
