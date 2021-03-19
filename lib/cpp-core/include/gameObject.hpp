@@ -7,13 +7,14 @@
 
 #pragma once
 
+#include <functional>
 #include "SFML/Graphics.hpp"
 
 class GameObject
 {
     public:
         GameObject();
-        GameObject(void (function)(GameObject *));
+        GameObject(std::function<void(GameObject *)>);
        ~GameObject() = default;
 
         void update();
@@ -29,7 +30,7 @@ class GameObject
         void setLayout(size_t const &layout);
         void setIndex(size_t const &index);
         void setActive(bool const &active);
-        void setFunction(void (function)(GameObject *));
+        void setFunction(std::function<void(GameObject *)>);
         
         /* GETTERS */
         std::string     getTag(void)        const;
@@ -43,14 +44,14 @@ class GameObject
         bool            getActive(void)     const;
 
      private:
-        std::string     _tag;
-        std::string     _type;
-        sf::Vector2f    _position;
-        sf::Vector2f    _scale;
-        sf::Vector2f    _origin;
-        sf::Vector2f    _hitbox;
-        size_t          _layout;
-        size_t          _index;
-        bool            _active;
-        void          (*_function)(GameObject *self);
+        std::string                         _tag;
+        std::string                         _type;
+        sf::Vector2f                        _position;
+        sf::Vector2f                        _scale;
+        sf::Vector2f                        _origin;
+        sf::Vector2f                        _hitbox;
+        size_t                              _layout;
+        size_t                              _index;
+        bool                                _active;
+        std::function<void(GameObject *)>   _function;
 };
