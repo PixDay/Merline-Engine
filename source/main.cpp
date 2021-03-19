@@ -14,7 +14,6 @@ void apple(GameObject *self)
 {
     static sf::Vector2f position = {(float)(rand() % 1870), (float)(rand() % 1030)};
 
-    std::cout << position.x << "; " << position.y << std::endl;
     (static_cast<DisplayableObject *>(self))->setPosition(position);
 }
 
