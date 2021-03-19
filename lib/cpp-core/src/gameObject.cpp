@@ -16,10 +16,30 @@ _origin({0.0f, 0.0f}),
 _hitbox({0.0f, 0.0f}),
 _layout(1),
 _index(1),
-_active(true)
+_active(true),
+_function(nullptr)
 {
 }
 
+GameObject::GameObject(void (function)(GameObject *)):
+_tag("default"),
+_type("GameObject"),
+_position({0.0f, 0.0f}),
+_scale({1.0f, 1.0f}),
+_origin({0.0f, 0.0f}),
+_hitbox({0.0f, 0.0f}),
+_layout(1),
+_index(1),
+_active(true),
+_function(function)
+{
+}
+
+void GameObject::update(void)
+{
+    if (_function != nullptr)
+        _function(this);
+}
 
 /* SETTERS */
 
@@ -75,6 +95,10 @@ void GameObject::setActive(bool const &active)
     _active = active;
 }
 
+void GameObject::setFunction(void (function)(GameObject *))
+{
+    _function = function;
+}
 
 /* GETTERS */
 
