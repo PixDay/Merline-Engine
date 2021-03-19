@@ -9,6 +9,7 @@ INCLUDE_DIRECTORIES (
 ADD_LIBRARY(${LIB_NAME} STATIC 
     src/core.cpp
     src/gameObject.cpp
+    src/displayableObject.cpp
     src/scene.cpp
     src/sceneManager.cpp
 )
