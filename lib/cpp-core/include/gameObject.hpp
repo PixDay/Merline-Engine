@@ -13,7 +13,10 @@ class GameObject
 {
     public:
         GameObject();
-        ~GameObject() = default;
+        GameObject(void (function)(GameObject *));
+       ~GameObject() = default;
+
+        void update();
 
          /* SETTERS */
         void setTag(std::string const &tag);
@@ -26,6 +29,7 @@ class GameObject
         void setLayout(size_t const &layout);
         void setIndex(size_t const &index);
         void setActive(bool const &active);
+        void setFunction(void (function)(GameObject *));
         
         /* GETTERS */
         std::string     getTag(void)        const;
@@ -48,4 +52,5 @@ class GameObject
         size_t          _layout;
         size_t          _index;
         bool            _active;
+        void          (*_function)(GameObject *self);
 };
