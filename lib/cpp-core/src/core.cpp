@@ -38,6 +38,33 @@ void App::draw(void)
     }
 }
 
+void App::addScene(std::string const &name)
+{
+    _sceneManager.addScene(name);
+}
+
+void App::addObject(GameObject *object)
+{
+    _sceneManager.addObject(object);
+}
+
+void App::addObjectTo(GameObject *object, std::string const &name)
+{
+    _sceneManager.addObjectTo(object, name);
+}
+
+/* SETTERS */
+
+void App::setCurrentScene(size_t const &scene)
+{
+    _sceneManager.setCurrentScene(scene);
+}
+
+void App::setCurrentScene(std::string const &name)
+{
+    _sceneManager.setCurrentScene(name);
+}
+
 /* GETTERS */
 
 SceneManager App::getSceneManager(void)  const
