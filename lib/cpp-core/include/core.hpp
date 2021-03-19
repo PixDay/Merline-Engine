@@ -18,7 +18,14 @@ class App
        ~App() = default;
 
         void run(void);
+        void addScene(std::string const &name);
+        void addObject(GameObject *object);
+        void addObjectTo(GameObject *object, std::string const &name);
 
+        /* SETTERS */
+        void setCurrentScene(size_t const &scene);
+        void setCurrentScene(std::string const &name);
+        
         /* GETTERS */
         SceneManager getSceneManager(void)  const;
         
