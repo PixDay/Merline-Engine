@@ -3,7 +3,7 @@
 #include "ui.hpp"
 
 
-void printer(DisplayableObject *self)
+void printer(GameObject *self)
 {
   (void)self;
   std::cout << "Coucou" << std::endl;
