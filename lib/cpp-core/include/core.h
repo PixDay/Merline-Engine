@@ -12,3 +12,4 @@
 #include "displayableObject.hpp"
 #include "scene.hpp"
 #include "sceneManager.hpp"
+#include "input.hpp"
