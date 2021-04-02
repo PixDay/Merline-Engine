@@ -54,6 +54,16 @@ void App::addObjectTo(GameObject *object, std::string const &name)
     _sceneManager.addObjectTo(object, name);
 }
 
+void App::addInput(Input *input)
+{
+    _inputManager.addInput(input);
+}
+
+void App::addInput(std::string const &keyName, sf::Keyboard::Key key)
+{
+    _inputManager.addInput(keyName, key);
+}
+
 /* SETTERS */
 
 void App::setCurrentScene(size_t const &scene)

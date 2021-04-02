@@ -15,7 +15,7 @@ void InputManager::addInput(Input *input)
     _inputs.push_back(input);
 }
 
-void InputManager::addInput(std::string const &keyName, sf::Keyboard &key)
+void InputManager::addInput(std::string const &keyName, sf::Keyboard::Key key)
 {
     Input *input = new Input(keyName, key);
 

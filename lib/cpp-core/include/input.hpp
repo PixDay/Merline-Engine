@@ -12,18 +12,18 @@
 class Input
 {
     public:
-        Input(std::string const &keyName, sf::Keyboard const key);
+        Input(std::string const &keyName, sf::Keyboard::Key const key);
        ~Input() = default;
 
         /* SETTERS */
         void setKeyName(std::string const &keyName);
-        void setKey(sf::Keyboard const &key);
+        void setKey(sf::Keyboard::Key const key);
 
         /* GETTERS */
-        std::string     getKeyName(void)    const;
-        sf::Keyboard    getKey(void)        const;
+        std::string         getKeyName(void)    const;
+        sf::Keyboard::Key   getKey(void)        const;
 
     private:
-        std::string     _keyName;
-        sf::Keyboard    _key;
+        std::string         _keyName;
+        sf::Keyboard::Key   _key;
 };

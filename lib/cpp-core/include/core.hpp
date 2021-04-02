@@ -22,6 +22,8 @@ class App
         void addScene(std::string const &name);
         void addObject(GameObject *object);
         void addObjectTo(GameObject *object, std::string const &name);
+        void addInput(Input *input);
+        void addInput(std::string const &keyName, sf::Keyboard::Key key);
 
         /* SETTERS */
         void setCurrentScene(size_t const &scene);

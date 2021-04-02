@@ -7,7 +7,7 @@
 
 #include "input.hpp"
 
-Input::Input(std::string const &keyName, sf::Keyboard const key):
+Input::Input(std::string const &keyName, sf::Keyboard::Key const key):
 _keyName(keyName),
 _key(key)
 {};
@@ -18,7 +18,7 @@ void Input::setKeyName(std::string const &keyName)
     _keyName = keyName;
 }
 
-void Input::setKey(sf::Keyboard const &key)
+void Input::setKey(sf::Keyboard::Key const key)
 {
     _key = key;
 }
@@ -29,7 +29,7 @@ std::string Input::getKeyName(void) const
     return _keyName;
 }
 
-sf::Keyboard Input::getKey(void) const
+sf::Keyboard::Key Input::getKey(void) const
 {
     return _key;
 }
