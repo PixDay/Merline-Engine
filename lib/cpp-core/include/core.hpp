@@ -10,6 +10,7 @@
 #include "SFML/Graphics.hpp"
 #include "displayableObject.hpp"
 #include "sceneManager.hpp"
+#include "inputManager.hpp"
 
 class App 
 {
@@ -34,4 +35,5 @@ class App
         sf::RenderWindow *      _window;
         sf::Keyboard::Key       _leaveKey;
         SceneManager            _sceneManager;
+        InputManager            _inputManager;
 };
