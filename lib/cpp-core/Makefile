@@ -12,7 +12,8 @@ SRCS	=	src/core.cpp							\
 				src/displayableObject.cpp	\
 				src/scene.cpp							\
 				src/sceneManager.cpp		\
-				src/input.cpp
+				src/input.cpp				\
+				src/inputManager.cpp
 
 OBJ	=	${SRCS:.cpp=.o}
 
