@@ -16,8 +16,9 @@ class InputManager
        ~InputManager() = default;
 
        void addInput(Input &input);
+       void addInput(std::string const &keyName, sf::Keyboard &key);
        void deleteInput(std::string const &keyName);
        
     private:
-        std::vector<Input &>    _inputs; 
+        std::vector<Input &>    _inputs;
 };
