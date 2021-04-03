@@ -19,11 +19,17 @@ class App
        ~App() = default;
 
         void run(void);
+
+        /* ADDERS */
         void addScene(std::string const &name);
         void addObject(GameObject *object);
         void addObjectTo(GameObject *object, std::string const &name);
         void addInput(Input *input);
         void addInput(std::string const &keyName, sf::Keyboard::Key key);
+        void addCollisionPair(std::string const &tag1, std::string const &tag2);
+
+        /* DELETERS */
+        void deleteCollisionPair(std::string const &tag1, std::string const &tag2);
 
         /* SETTERS */
         void setCurrentScene(size_t const &scene);
