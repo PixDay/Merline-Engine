@@ -31,6 +31,8 @@ class App
         
         /* GETTERS */
         SceneManager getSceneManager(void)  const;
+        float        getTick(void);
+        bool         fpsPassed(void);
         
     private:
         void draw(void);
@@ -38,4 +40,6 @@ class App
         sf::Keyboard::Key       _leaveKey;
         SceneManager            _sceneManager;
         InputManager            _inputManager;
+        sf::Clock               _clock;
+        float                   _fps;
 };

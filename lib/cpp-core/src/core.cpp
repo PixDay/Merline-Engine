@@ -9,7 +9,8 @@
 
 App::App():
     _window(new sf::RenderWindow(sf::VideoMode(1920, 1080), "SFML Engine", sf::Style::Fullscreen)),
-    _leaveKey(sf::Keyboard::Key::Escape)
+    _leaveKey(sf::Keyboard::Key::Escape),
+    _fps(60)
 {
 };
 
@@ -22,9 +23,11 @@ void App::run(void)
             if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(_leaveKey))
                 _window->close();
         }
-        _window->clear(sf::Color::Black);
-        draw();
-        _window->display();
+        if (fpsPassed()) {
+            _window->clear(sf::Color::Black);
+            draw();
+            _window->display();
+        }
     }
 }
 
@@ -81,4 +84,22 @@ void App::setCurrentScene(std::string const &name)
 SceneManager App::getSceneManager(void)  const
 {
     return _sceneManager;
+}
+
+float App::getTick(void)
+{
+    float res = _clock.getElapsedTime().asSeconds();
+
+    return res;
+}
+
+bool App::fpsPassed(void)
+{
+    float res = _clock.getElapsedTime().asSeconds();
+
+    if (res >= 1.0f / _fps) {
+        _clock.restart();
+        return true;
+    }
+    return false;
 }

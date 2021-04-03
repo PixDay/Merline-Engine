@@ -35,3 +35,18 @@ void InputManager::deleteInput(std::string const &keyName)
         iterator++;
     }
 }
+
+bool InputManager::isKeyPressed(std::string const &keyName) const
+{
+    size_t iterator = 0;
+
+    for (auto input : _inputs) {
+        if (input->getKeyName() == keyName) {
+            if (sf::Keyboard::isKeyPressed(input->getKey()))
+                return true;
+            break;
+        }
+        iterator++;
+    }
+    return false;
+}

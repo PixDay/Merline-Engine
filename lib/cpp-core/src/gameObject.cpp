@@ -16,6 +16,7 @@ _origin({0.0f, 0.0f}),
 _hitbox({0.0f, 0.0f}),
 _layout(1),
 _index(1),
+_speed(10.0f),
 _active(true),
 _function(nullptr)
 {
@@ -30,6 +31,7 @@ _origin({0.0f, 0.0f}),
 _hitbox({0.0f, 0.0f}),
 _layout(1),
 _index(1),
+_speed(10.0f),
 _active(true),
 _function(function)
 {
@@ -90,6 +92,11 @@ void GameObject::setIndex(size_t const &index)
     _index = index;
 }
 
+void GameObject::setSpeed(float const &speed)
+{
+    _speed = speed;
+}
+
 void GameObject::setActive(bool const &active)
 {
     _active = active;
@@ -140,6 +147,11 @@ size_t GameObject::getLayout(void) const
 size_t GameObject::getIndex(void) const
 {
     return _index;
+}
+
+float GameObject::getSpeed(void) const
+{
+    return _speed;
 }
 
 bool GameObject::getActive(void) const

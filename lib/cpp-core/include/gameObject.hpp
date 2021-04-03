@@ -29,6 +29,7 @@ class GameObject
         void setHitbox(float const &x, float const &y);
         void setLayout(size_t const &layout);
         void setIndex(size_t const &index);
+        void setSpeed(float const &speed);
         void setActive(bool const &active);
         void setFunction(std::function<void(GameObject *)>);
         
@@ -41,6 +42,7 @@ class GameObject
         sf::Vector2f    getHitbox(void)     const;
         size_t          getLayout(void)     const;
         size_t          getIndex(void)      const;
+        float           getSpeed(void)      const;
         bool            getActive(void)     const;
 
      private:
@@ -52,6 +54,7 @@ class GameObject
         sf::Vector2f                        _hitbox;
         size_t                              _layout;
         size_t                              _index;
+        float                               _speed;
         bool                                _active;
         std::function<void(GameObject *)>   _function;
 };
