@@ -14,6 +14,7 @@ ADD_LIBRARY(${LIB_NAME} STATIC
     src/sceneManager.cpp
     src/input.cpp
     src/inputManager.cpp
+    src/pair.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(${LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
