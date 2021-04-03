@@ -19,7 +19,8 @@ _layout(1),
 _index(1),
 _speed(10.0f),
 _active(true),
-_function(nullptr)
+_function(nullptr),
+_onCollide(nullptr)
 {
 }
 
@@ -35,7 +36,8 @@ _layout(1),
 _index(1),
 _speed(10.0f),
 _active(true),
-_function(function)
+_function(function),
+_onCollide(nullptr)
 {
 }
 
@@ -43,6 +45,12 @@ void GameObject::update(void)
 {
     if (_function != nullptr)
         _function(this);
+}
+
+void GameObject::onCollide()
+{
+    if (_onCollide != nullptr)
+        _onCollide(this);
 }
 
 /* SETTERS */
@@ -112,6 +120,11 @@ void GameObject::setActive(bool const &active)
 void GameObject::setFunction(std::function<void(GameObject *)> function)
 {
     _function = function;
+}
+
+void GameObject::setOnCollide(std::function<void(GameObject *)> onCollide)
+{
+    _onCollide = onCollide;
 }
 
 /* GETTERS */
