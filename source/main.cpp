@@ -7,16 +7,38 @@
 
 void snakeMovement(GameObject *self)
 {
-  (void)self;
+  sf::Vector2f position = self->getPosition();
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    position.x += self->getSpeed();
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    position.x -= self->getSpeed();
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    position.y -= self->getSpeed();
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    position.y += self->getSpeed();
+  position.x = (position.x < 0.0f) ? 0.0f : (position.x > 1920.0f) ? 1920.0f : position.x;
+  position.y = (position.y < 0.0f) ? 0.0f : (position.y > 1030.0f) ? 1030.0f : position.y;
+  static_cast<DisplayableObject *>(self)->setPosition(position);
 }
 
-void apple(GameObject *self)
+void ballMovement(GameObject *self)
 {
-    static sf::Vector2f position = {(float)(rand() % 1870), (float)(rand() % 1030)};
+  static sf::Vector2f direction = {5.0f, 5.0f};
+  sf::Vector2f position = self->getPosition();
 
-    (static_cast<DisplayableObject *>(self))->setPosition(position);
+  if (position.x > 1870.0f)
+    direction.x = -(self->getSpeed());
+  if (position.x < 0.0f)
+    direction.x = self->getSpeed();
+  if (position.y > 1030.0f)
+    direction.y = -(self->getSpeed());
+  if (position.y < 0.0f)
+    direction.y = self->getSpeed();
+  position.x += direction.x;
+  position.y += direction.y;
+  static_cast<DisplayableObject *>(self)->setPosition(position);
 }
-
 
 int main()
 {
@@ -26,7 +48,7 @@ int main()
     app.addScene("Menu");
     app.setCurrentScene("Menu");
     app.addObject(new DisplayableObject("img/green.png", &snakeMovement));
-    app.addObject(new DisplayableObject("img/red.png", &apple));
+    app.addObject(new DisplayableObject("img/red.png", &ballMovement));
     app.run();
     return 0;
 }
