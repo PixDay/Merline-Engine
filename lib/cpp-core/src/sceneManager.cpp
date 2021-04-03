@@ -38,6 +38,13 @@ void SceneManager::addObjectTo(GameObject *object, std::string const &name)
     _scenes[this->getScene(name)]->addObject(object);
 }
 
+void SceneManager::addCollisionPair(std::string const &tag1, std::string const &tag2)
+{
+    Pair pair(tag1, tag2);
+
+    _collisionPair.push_back(pair);
+}
+
 /* DELETERS */
 
 void SceneManager::deleteScene(std::string const &name)
@@ -48,6 +55,19 @@ void SceneManager::deleteScene(std::string const &name)
         if (scene->getName() == name) {
             _scenes.erase(_scenes.begin() + iterator);
             delete scene;
+            break;
+        }
+        iterator++;
+    }
+}
+
+void SceneManager::deleteCollisionPair(std::string const &tag1, std::string const &tag2)
+{
+    size_t iterator = 0;
+
+    for (auto collision : _collisionPair) {
+        if (collision.getFirst() == tag1 && collision.getSecond() == tag2) {
+            _collisionPair.erase(_collisionPair.begin() + iterator);
             break;
         }
         iterator++;
@@ -96,6 +116,24 @@ size_t SceneManager::getScene(std::string const &name) const
         iterator++;
     }
     return _currentScene;
+}
+
+GameObject *SceneManager::getGameObject(std::string const &tag) const
+{
+    for (auto gameObject : _scenes[_currentScene]->getGameObjects()) {
+        if (gameObject->getTag() == tag)
+            return gameObject;
+    }
+}
+
+void SceneManager::onCollideTrigger(void)
+{
+    for (auto pair : _collisionPair) {
+        if (collide(pair.getFirst(), pair.getSecond())) {
+            GameObject *object = getGameObject(pair.getFirst());
+            object->onCollide(); 
+        }
+    }
 }
 
 bool SceneManager::collide(std::string const &tag1, std::string const &tag2) const
