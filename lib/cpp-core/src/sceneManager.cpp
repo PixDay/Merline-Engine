@@ -76,17 +76,17 @@ void SceneManager::setCurrentScene(std::string const &name)
 
 /* GETTERS */
 
-std::vector<Scene *>    SceneManager::getScenes()                                                   const
+std::vector<Scene *> SceneManager::getScenes() const
 {
     return _scenes;
 }
 
-size_t                  SceneManager::getCurrentScene()                                             const
+size_t SceneManager::getCurrentScene() const
 {
     return _currentScene;
 }
 
-size_t                  SceneManager::getScene(std::string const &name)                             const
+size_t SceneManager::getScene(std::string const &name) const
 {
     size_t iterator = 0;
 
@@ -98,10 +98,9 @@ size_t                  SceneManager::getScene(std::string const &name)         
     return _currentScene;
 }
 
-bool                    SceneManager::collide(std::string const &tag1, std::string const &tag2)     const
+bool SceneManager::collide(std::string const &tag1, std::string const &tag2) const
 {
-  (void)tag1, tag2;
-    /*DisplayableObject *object1 = nullptr;
+    DisplayableObject *object1 = nullptr;
     DisplayableObject *object2 = nullptr;
     
     for (auto object : _scenes[_currentScene]->getGameObjects()) {
@@ -109,19 +108,20 @@ bool                    SceneManager::collide(std::string const &tag1, std::stri
             object1 = static_cast<DisplayableObject *>(object);
         if (object->getTag() == tag2)
             object2 = static_cast<DisplayableObject *>(object);
+        if (object1 != nullptr && object2 != nullptr) {
+            sf::Rect<float> obj1(
+                object1->getPosition(), 
+                {(float)object1->getSprite()->getTexture()->getSize().x, 
+                (float)object1->getSprite()->getTexture()->getSize().y}
+            );
+            sf::Rect<float> obj2(
+                object2->getPosition(), 
+                {(float)object2->getSprite()->getTexture()->getSize().x, 
+                (float)object2->getSprite()->getTexture()->getSize().y}
+            );
+            if (obj1.intersects(obj2))
+                return true;
+        }
     }
-    if (object1 == nullptr || object2 == nullptr)
-        return false;
-    sf::Rect<float> obj1(
-        object1->getPosition(), 
-        {(float)object1->getSprite()->getTexture()->getSize().x, 
-         (float)object1->getSprite()->getTexture()->getSize().y}
-    );
-    sf::Rect<float> obj2(
-        object2->getPosition(), 
-        {(float)object2->getSprite()->getTexture()->getSize().x, 
-         (float)object2->getSprite()->getTexture()->getSize().y}
-    );
-    return obj1.intersects(obj2);*/
     return false;
 }

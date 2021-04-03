@@ -13,6 +13,7 @@ _type("GameObject"),
 _position({0.0f, 0.0f}),
 _scale({1.0f, 1.0f}),
 _origin({0.0f, 0.0f}),
+_direction({5.0f, 5.0f}),
 _hitbox({0.0f, 0.0f}),
 _layout(1),
 _index(1),
@@ -28,6 +29,7 @@ _type("GameObject"),
 _position({0.0f, 0.0f}),
 _scale({1.0f, 1.0f}),
 _origin({0.0f, 0.0f}),
+_direction({5.0f, 5.0f}),
 _hitbox({0.0f, 0.0f}),
 _layout(1),
 _index(1),
@@ -68,6 +70,11 @@ void GameObject::setScale(sf::Vector2f const &scale)
 void GameObject::setOrigin(sf::Vector2f const &origin)
 {
     _origin = origin;
+}
+
+void GameObject::setDirection(sf::Vector2f const &direction)
+{
+    _direction = direction;
 }
 
 void GameObject::setHitbox(sf::Vector2f const &hitbox)
@@ -132,6 +139,11 @@ sf::Vector2f GameObject::getScale(void) const
 sf::Vector2f GameObject::getOrigin(void) const
 {
     return _origin;
+}
+
+sf::Vector2f GameObject::getDirection(void) const
+{
+    return _direction;
 }
 
 sf::Vector2f GameObject::getHitbox(void) const

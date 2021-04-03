@@ -8,6 +8,7 @@
 #pragma once
 
 #include "scene.hpp"
+#include "displayableObject.hpp"
 
 class SceneManager
 {
