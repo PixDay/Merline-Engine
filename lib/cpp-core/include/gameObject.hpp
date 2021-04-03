@@ -18,7 +18,8 @@ class GameObject
        ~GameObject() = default;
 
         void update();
-
+        void onCollide();
+        
          /* SETTERS */
         void setTag(std::string const &tag);
         void setType(std::string const &type);
@@ -32,8 +33,9 @@ class GameObject
         void setIndex(size_t const &index);
         void setSpeed(float const &speed);
         void setActive(bool const &active);
-        void setFunction(std::function<void(GameObject *)>);
-        
+        void setFunction(std::function<void(GameObject *)> function);
+        void setOnCollide(std::function<void(GameObject *)> onCollide);
+
         /* GETTERS */
         std::string     getTag(void)            const;
         std::string     getType(void)           const;
@@ -60,4 +62,5 @@ class GameObject
         float                               _speed;
         bool                                _active;
         std::function<void(GameObject *)>   _function;
+        std::function<void(GameObject *)>   _onCollide;
 };
