@@ -25,6 +25,7 @@ void App::run(void)
         }
         if (fpsPassed()) {
             _window->clear(sf::Color::Black);
+            _sceneManager.onCollideTrigger();
             draw();
             _window->display();
         }
@@ -41,6 +42,8 @@ void App::draw(void)
         }
     }
 }
+
+/* ADDERS */
 
 void App::addScene(std::string const &name)
 {
@@ -65,6 +68,18 @@ void App::addInput(Input *input)
 void App::addInput(std::string const &keyName, sf::Keyboard::Key key)
 {
     _inputManager.addInput(keyName, key);
+}
+
+void App::addCollisionPair(std::string const &tag1, std::string const &tag2)
+{
+    _sceneManager.addCollisionPair(tag1, tag2);
+}
+
+/* DELETERS */
+
+void App::deleteCollisionPair(std::string const &tag1, std::string const &tag2)
+{
+    _sceneManager.deleteCollisionPair(tag1, tag2);
 }
 
 /* SETTERS */
