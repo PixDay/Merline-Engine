@@ -10,7 +10,7 @@
 App::App():
     _window(new sf::RenderWindow(sf::VideoMode(1920, 1080), "SFML Engine", sf::Style::Fullscreen)),
     _leaveKey(sf::Keyboard::Key::Escape),
-    _fps(60)
+    _fps(144)
 {
 };
 
