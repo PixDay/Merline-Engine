@@ -5,6 +5,7 @@
 ** Adrien Colombier
 */
 
+#include <iostream>
 #include "sceneManager.hpp"
 
 SceneManager::SceneManager():
@@ -131,7 +132,7 @@ void SceneManager::onCollideTrigger(void)
     for (auto pair : _collisionPair) {
         if (collide(pair.getFirst(), pair.getSecond())) {
             GameObject *object = getGameObject(pair.getFirst());
-            object->onCollide(); 
+            object->onCollide();
         }
     }
 }
@@ -157,8 +158,9 @@ bool SceneManager::collide(std::string const &tag1, std::string const &tag2) con
                 {(float)object2->getSprite()->getTexture()->getSize().x, 
                 (float)object2->getSprite()->getTexture()->getSize().y}
             );
-            if (obj1.intersects(obj2))
+            if (obj1.intersects(obj2)) {
                 return true;
+            }
         }
     }
     return false;

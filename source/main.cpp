@@ -14,7 +14,7 @@ void secondPlayer(GameObject *self)
     position.y -= self->getSpeed();
   if (position.y < ballPosition.y - 75.0f)
     position.y += self->getSpeed();
-  position.y = (position.y < 0.0f) ? 0.0f : (position.y > 1030.0f) ? 1030.0f : position.y;
+  position.y = (position.y < 0.0f) ? 0.0f : (position.y > 930.0f) ? 930.0f : position.y;
   static_cast<DisplayableObject *>(self)->setPosition(position);
 }
 
@@ -26,7 +26,7 @@ void player(GameObject *self)
     position.y -= self->getSpeed();
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     position.y += self->getSpeed();
-  position.y = (position.y < 0.0f) ? 0.0f : (position.y > 1030.0f) ? 1030.0f : position.y;
+  position.y = (position.y < 0.0f) ? 0.0f : (position.y > 930.0f) ? 930.0f : position.y;
   static_cast<DisplayableObject *>(self)->setPosition(position);
 }
 
@@ -36,15 +36,15 @@ void ballMovement(GameObject *self)
   sf::Vector2f position = self->getPosition();
 
   if (position.x > 1870.0f)
-    direction.x = -(self->getSpeed());
+    direction.x = -(self->getDirection().x);
   if (position.x < 0.0f) 
-    direction.x = self->getSpeed();
+    direction.x = -(self->getDirection().x);
   if (position.y > 1030.0f)
-    direction.y = -(self->getSpeed());
+    direction.y = -(self->getDirection().y);
   if (position.y < 0.0f)
-    direction.y = self->getSpeed();
-  position.x += direction.x;
-  position.y += direction.y;
+    direction.y = -(self->getDirection().y);
+  position.x = position.x + (direction.x * self->getSpeed());
+  position.y = position.y + (direction.y * self->getSpeed());
   self->setDirection(direction);
   static_cast<DisplayableObject *>(self)->setPosition(position);
 }
@@ -52,7 +52,7 @@ void ballMovement(GameObject *self)
 void ballCollision(GameObject *self)
 {
     sf::Vector2f direction = self->getDirection();
-    direction.x = -(self->getSpeed());
+    direction.x = -(self->getDirection().x);
     self->setSpeed(self->getSpeed() + 0.1f);
     self->setDirection(direction);
 }
@@ -62,6 +62,8 @@ int main()
     App app = App();
     DisplayableObject *player1 = new DisplayableObject("img/player.png", &player);
     DisplayableObject *player2 = new DisplayableObject("img/player.png", &secondPlayer);
+    DisplayableObject *line1 = new DisplayableObject("img/line.png");
+    DisplayableObject *line2 = new DisplayableObject("img/line.png");
     DisplayableObject *ball = new DisplayableObject("img/ball.png", &ballMovement);
     sf::Vector2f position = {50.0f, 500.0f};
 
@@ -72,12 +74,19 @@ int main()
     player1->setPosition(position);
     position.x = 1820.0f;
     player2->setPosition(position);
-    player2->setSpeed(10.0f);
+    player2->setSpeed(7.0f);
+    position.x = 73.0f;
+    position.y = 0.0f;
+    line1->setPosition(position);
+    position.x = 1843.0f;
+    line2->setPosition(position);
     srand (time(NULL));
     app.addScene("Game");
     app.setCurrentScene("Game");
     app.addObject(new DisplayableObject("img/background.png"));
     app.addObject(ball);
+    app.addObject(line1);
+    app.addObject(line2);
     app.addObject(player1);
     app.addObject(player2);
     player2->addObject(ball);
