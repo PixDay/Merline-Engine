@@ -47,10 +47,10 @@ void GameObject::update(void)
         _function(this);
 }
 
-void GameObject::onCollide()
+void GameObject::onCollide(GameObject *object)
 {
     if (_onCollide != nullptr)
-        _onCollide(this);
+        _onCollide(this, object);
 }
 
 /* SETTERS */
@@ -122,7 +122,7 @@ void GameObject::setFunction(std::function<void(GameObject *)> function)
     _function = function;
 }
 
-void GameObject::setOnCollide(std::function<void(GameObject *)> onCollide)
+void GameObject::setOnCollide(std::function<void(GameObject *, GameObject *)> onCollide)
 {
     _onCollide = onCollide;
 }
