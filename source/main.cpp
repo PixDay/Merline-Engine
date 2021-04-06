@@ -49,11 +49,17 @@ void ballMovement(GameObject *self)
   static_cast<DisplayableObject *>(self)->setPosition(position);
 }
 
-void ballCollision(GameObject *self)
+void ballCollision(GameObject *self, GameObject *collided)
 {
     sf::Vector2f direction = self->getDirection();
+    sf::Vector2f position = {1920.0f / 2.0f, 1080.0f / 2.0f};
+
     direction.x = -(self->getDirection().x);
     self->setSpeed(self->getSpeed() + 0.1f);
+    if (collided->getTag() == "Line") {
+      static_cast<DisplayableObject *>(self)->setPosition(position);
+      self->setSpeed(4.0f);
+    }
     self->setDirection(direction);
 }
 
@@ -71,6 +77,8 @@ int main()
     ball->setSpeed(5.0f);
     player1->setTag("Player");
     player2->setTag("Bot");
+    line1->setTag("Line");
+    line2->setTag("Line");
     player1->setPosition(position);
     position.x = 1820.0f;
     player2->setPosition(position);
@@ -92,6 +100,7 @@ int main()
     player2->addObject(ball);
     app.addCollisionPair("Ball", "Player");
     app.addCollisionPair("Ball", "Bot");
+    app.addCollisionPair("Ball", "Line");
     ball->setOnCollide(&ballCollision);
     app.run();
     return 0;
