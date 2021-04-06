@@ -37,7 +37,7 @@ class SceneManager
         size_t                  getScene(std::string const &name)                           const;
         GameObject             *getGameObject(std::string const &tag)                       const;
         void                    onCollideTrigger(void);
-        bool                    collide(std::string const &tag1, std::string const &tag2)   const;
+        GameObject             *collide(std::string const &tag1, std::string const &tag2)   const;
 
     private:
         size_t                  _currentScene;
