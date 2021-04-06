@@ -129,15 +129,17 @@ GameObject *SceneManager::getGameObject(std::string const &tag) const
 
 void SceneManager::onCollideTrigger(void)
 {
+    GameObject *collidedObject;
+
     for (auto pair : _collisionPair) {
-        if (collide(pair.getFirst(), pair.getSecond())) {
+        if (collidedObject = collide(pair.getFirst(), pair.getSecond())) {
             GameObject *object = getGameObject(pair.getFirst());
-            object->onCollide();
+            object->onCollide(collidedObject);
         }
     }
 }
 
-bool SceneManager::collide(std::string const &tag1, std::string const &tag2) const
+GameObject *SceneManager::collide(std::string const &tag1, std::string const &tag2) const
 {
     DisplayableObject *object1 = nullptr;
     DisplayableObject *object2 = nullptr;
@@ -159,9 +161,9 @@ bool SceneManager::collide(std::string const &tag1, std::string const &tag2) con
                 (float)object2->getSprite()->getTexture()->getSize().y}
             );
             if (obj1.intersects(obj2)) {
-                return true;
+                return object2;
             }
         }
     }
-    return false;
+    return nullptr;
 }
