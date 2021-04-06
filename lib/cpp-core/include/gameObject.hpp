@@ -18,7 +18,7 @@ class GameObject
        ~GameObject() = default;
 
         void update();
-        void onCollide();
+        void onCollide(GameObject *object);
         
          /* SETTERS */
         void setTag(std::string const &tag);
@@ -34,7 +34,7 @@ class GameObject
         void setSpeed(float const &speed);
         void setActive(bool const &active);
         void setFunction(std::function<void(GameObject *)> function);
-        void setOnCollide(std::function<void(GameObject *)> onCollide);
+        void setOnCollide(std::function<void(GameObject *, GameObject *)> onCollide);
 
         /* GETTERS */
         std::string     getTag(void)            const;
@@ -50,17 +50,17 @@ class GameObject
         bool            getActive(void)         const;
 
      private:
-        std::string                         _tag;
-        std::string                         _type;
-        sf::Vector2f                        _position;
-        sf::Vector2f                        _scale;
-        sf::Vector2f                        _origin;
-        sf::Vector2f                        _direction;
-        sf::Vector2f                        _hitbox;
-        size_t                              _layout;
-        size_t                              _index;
-        float                               _speed;
-        bool                                _active;
-        std::function<void(GameObject *)>   _function;
-        std::function<void(GameObject *)>   _onCollide;
+        std::string                                         _tag;
+        std::string                                         _type;
+        sf::Vector2f                                        _position;
+        sf::Vector2f                                        _scale;
+        sf::Vector2f                                        _origin;
+        sf::Vector2f                                        _direction;
+        sf::Vector2f                                        _hitbox;
+        size_t                                              _layout;
+        size_t                                              _index;
+        float                                               _speed;
+        bool                                                _active;
+        std::function<void(GameObject *)>                   _function;
+        std::function<void(GameObject *, GameObject *)>     _onCollide;
 };
