@@ -14,7 +14,8 @@ SRCS	=	src/core.cpp				\
 			src/sceneManager.cpp		\
 			src/input.cpp				\
 			src/inputManager.cpp		\
-			src/pair.cpp
+			src/pair.cpp				\
+			src/textObject.cpp
 
 OBJ	=	${SRCS:.cpp=.o}
 
