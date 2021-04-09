@@ -24,8 +24,8 @@ class TextObject : public DisplayableObject
 
         /* GETTERS */
         std::string getText(void)   const;
-        std::string getFont(void)   const;
-        size_t      getColor(void)  const;
+        sf::Font    getFont(void)   const;
+        sf::Color   getColor(void)  const;
 
     private:
         std::string _text;
