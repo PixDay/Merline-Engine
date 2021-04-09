@@ -12,6 +12,7 @@
 class DisplayableObject : public GameObject
 {
   public:
+    DisplayableObject() = default;
     DisplayableObject(std::string const &texture);
     DisplayableObject(std::string const &texture, std::function<void(GameObject *)>);
    ~DisplayableObject();
