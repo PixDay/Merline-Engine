@@ -66,6 +66,8 @@ void ballCollision(GameObject *self, GameObject *collided)
 int main()
 {
     App app = App();
+    TextObject *playerScore = new TextObject("0");
+    TextObject *botScore = new TextObject("0");
     DisplayableObject *player1 = new DisplayableObject("img/player.png", &player);
     DisplayableObject *player2 = new DisplayableObject("img/player.png", &secondPlayer);
     DisplayableObject *line1 = new DisplayableObject("img/line.png");
@@ -88,6 +90,11 @@ int main()
     line1->setPosition(position);
     position.x = 1843.0f;
     line2->setPosition(position);
+    position.x = 500.0f;
+    position.y = 50.0f;
+    playerScore->setPosition(position);
+    position.x = 1460.0f;
+    botScore->setPosition(position);
     srand (time(NULL));
     app.addScene("Game");
     app.setCurrentScene("Game");
@@ -97,6 +104,8 @@ int main()
     app.addObject(line2);
     app.addObject(player1);
     app.addObject(player2);
+    app.addObject(playerScore);
+    app.addObject(botScore);
     player2->addObject(ball);
     app.addCollisionPair("Ball", "Player");
     app.addCollisionPair("Ball", "Bot");
