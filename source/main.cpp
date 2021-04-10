@@ -4,7 +4,6 @@
 #include "core.h"
 #include "ui.hpp"
 
-
 void secondPlayer(GameObject *self)
 {
   sf::Vector2f position = self->getPosition();
@@ -51,14 +50,25 @@ void ballMovement(GameObject *self)
 
 void ballCollision(GameObject *self, GameObject *collided)
 {
+    TextObject *scoreObject;
     sf::Vector2f direction = self->getDirection();
     sf::Vector2f position = {1920.0f / 2.0f, 1080.0f / 2.0f};
+    std::string score;
+    int intScore;
 
     direction.x = -(self->getDirection().x);
     self->setSpeed(self->getSpeed() + 0.1f);
     if (collided->getTag() == "Line") {
+      if (static_cast<DisplayableObject *>(self)->getPosition().x < 960.0f)
+        scoreObject = static_cast<TextObject *>(static_cast<DisplayableObject *>(self)->getObjects()[1]);
+      else
+        scoreObject = static_cast<TextObject *>(static_cast<DisplayableObject *>(self)->getObjects()[0]);
       static_cast<DisplayableObject *>(self)->setPosition(position);
       self->setSpeed(4.0f);
+      score = scoreObject->getText();
+      intScore = std::stoi(score);
+      intScore++;
+      scoreObject->setText(std::to_string(intScore));
     }
     self->setDirection(direction);
 }
@@ -67,7 +77,7 @@ int main()
 {
     App app = App();
     TextObject *playerScore = new TextObject("0");
-    TextObject *botScore = new TextObject("0");
+    TextObject *botScore = new TextObject("-1");
     DisplayableObject *player1 = new DisplayableObject("img/player.png", &player);
     DisplayableObject *player2 = new DisplayableObject("img/player.png", &secondPlayer);
     DisplayableObject *line1 = new DisplayableObject("img/line.png");
@@ -84,7 +94,7 @@ int main()
     player1->setPosition(position);
     position.x = 1820.0f;
     player2->setPosition(position);
-    player2->setSpeed(7.0f);
+    player2->setSpeed(5.5f);
     position.x = 73.0f;
     position.y = 0.0f;
     line1->setPosition(position);
@@ -95,6 +105,10 @@ int main()
     playerScore->setPosition(position);
     position.x = 1460.0f;
     botScore->setPosition(position);
+    playerScore->setSize(50);
+    botScore->setSize(50);
+    ball->addObject(playerScore);
+    ball->addObject(botScore);
     srand (time(NULL));
     app.addScene("Game");
     app.setCurrentScene("Game");
