@@ -9,25 +9,37 @@
 
 TextObject::TextObject(std::string const &text):
 _text(text)
-{};
+{
+    this->setType("TextObject");
+    _font.loadFromFile("font/Teko-Bold.ttf");
+    _render.setFont(_font);
+    _render.setCharacterSize(24);
+    _render.setFillColor(sf::Color::White);
+    _render.setString(_text);
+};
 
 TextObject::TextObject(std::string const &text, std::string const &fontPath):
 _text(text)
 {
+    this->setType("TextObject");
     _font.loadFromFile(fontPath);
+    _render.setFont(_font);
 }
 
 TextObject::TextObject(std::string const &text, std::string const &fontPath, size_t color):
 _text(text),
-_color(sf::Color(color))
+_color(sf::Color((sf::Uint32)color))
 {
+    this->setType("TextObject");
     _font.loadFromFile(fontPath);
+    _render.setFont(_font);
 }
 
 /* SETTERS */
 void TextObject::setText(std::string const &text)
 {
     _text = text;
+    _render.setString(_text);
 }
 
 void TextObject::setFont(std::string const &fontPath)
@@ -37,7 +49,19 @@ void TextObject::setFont(std::string const &fontPath)
 
 void TextObject::setColor(size_t color)
 {
-    _color = sf::Color(color);
+    _color = sf::Color((sf::Uint32)color);
+    _render.setFillColor(_color);
+}
+
+void TextObject::setPosition(sf::Vector2f const &position)
+{
+    GameObject::setPosition(position);
+    _render.setPosition(position);
+}
+
+void TextObject::setSize(size_t const &size)
+{
+    _render.setCharacterSize(size);
 }
 
 /* GETTERS */
@@ -54,4 +78,9 @@ sf::Font TextObject::getFont(void) const
 sf::Color TextObject::getColor(void) const
 {
     return _color;
+}
+
+sf::Text TextObject::getRender(void) const
+{
+    return _render;
 }
