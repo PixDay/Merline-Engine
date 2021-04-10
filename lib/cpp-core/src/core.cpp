@@ -40,6 +40,9 @@ void App::draw(void)
             static_cast<DisplayableObject *>(displayableElement)->update();
             _window->draw(*(static_cast<DisplayableObject *>(displayableElement)->getSprite()));
         }
+        if (displayableElement->getType() == "TextObject" && (static_cast<TextObject *>(displayableElement)->getActive())) {
+            _window->draw(static_cast<TextObject *>(displayableElement)->getRender());
+        }
     }
 }
 
