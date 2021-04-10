@@ -21,7 +21,8 @@ class TextObject : public DisplayableObject
         void setText(std::string const &text);
         void setFont(std::string const &fontPath);
         void setColor(size_t color);
-        void setPosition(sf::Vector2f position);
+        void setPosition(sf::Vector2f const &position);
+        void setSize(size_t const &size);
 
         /* GETTERS */
         std::string getText(void)   const;
