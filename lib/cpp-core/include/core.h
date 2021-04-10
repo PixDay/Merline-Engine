@@ -13,3 +13,4 @@
 #include "scene.hpp"
 #include "sceneManager.hpp"
 #include "input.hpp"
+#include "textObject.hpp"
