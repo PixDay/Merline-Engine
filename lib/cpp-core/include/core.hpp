@@ -9,6 +9,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "displayableObject.hpp"
+#include "textObject.hpp"
 #include "sceneManager.hpp"
 #include "inputManager.hpp"
 
