@@ -40,6 +40,11 @@ void DisplayableObject::update()
     }
 }
 
+void DisplayableObject::resetTimer(void)
+{
+    _clock.restart();
+}
+
 /* ADDERS */
 
 void DisplayableObject::addObject(DisplayableObject *object)
@@ -140,6 +145,11 @@ sf::Sprite* DisplayableObject::getSprite(void) const
 sf::Texture DisplayableObject::getTexture(void) const
 {
     return _texture;
+}
+
+float DisplayableObject::getTime(void) const
+{
+    return _clock.getElapsedTime().asSeconds();
 }
 
 float DisplayableObject::getAngle(void) const
