@@ -152,13 +152,13 @@ GameObject *SceneManager::collide(std::string const &tag1, std::string const &ta
         if (object1 != nullptr && object2 != nullptr) {
             sf::Rect<float> obj1(
                 object1->getPosition(), 
-                {(float)object1->getSprite()->getTexture()->getSize().x, 
-                (float)object1->getSprite()->getTexture()->getSize().y}
+                {(float)object1->getSprite()->getTexture()->getSize().x * object1->getScale().x, 
+                (float)object1->getSprite()->getTexture()->getSize().y * object1->getScale().y}
             );
             sf::Rect<float> obj2(
                 object2->getPosition(), 
-                {(float)object2->getSprite()->getTexture()->getSize().x, 
-                (float)object2->getSprite()->getTexture()->getSize().y}
+                {(float)object2->getSprite()->getTexture()->getSize().x * object2->getScale().x, 
+                (float)object2->getSprite()->getTexture()->getSize().y * object2->getScale().y}
             );
             if (obj1.intersects(obj2)) {
                 return object2;
