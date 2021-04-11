@@ -18,6 +18,7 @@ class DisplayableObject : public GameObject
    ~DisplayableObject();
 
     void update();
+    void resetTimer(void);
     
     /* ADDERS */
     void addObject(DisplayableObject *object);
@@ -40,6 +41,7 @@ class DisplayableObject : public GameObject
     /* GETTERS */
     sf::Sprite *                        getSprite(void)     const;
     sf::Texture                         getTexture(void)    const;
+    float                               getTime(void)       const;
     sf::Vector2f                        getDimension(void)  const;
     float                               getAngle(void)      const;
     std::vector<DisplayableObject *>    getObjects()        const;
