@@ -20,6 +20,7 @@ class Scene
 
         /* DELETERS */
         void deleteObject(std::string const &tag);
+        void deleteObject(size_t const &index);
         void eraseObject(std::string const &tag);
 
         /* SETTERS */
