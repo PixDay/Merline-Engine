@@ -13,6 +13,8 @@
 #include "sceneManager.hpp"
 #include "inputManager.hpp"
 
+#define STOP_RUN "STOP_RUN"
+
 class App 
 {
     public:
@@ -42,8 +44,8 @@ class App
         bool         fpsPassed(void);
         
     private:
-        void draw(void);
-        sf::RenderWindow *      _window;
+        bool draw(void);
+        sf::RenderWindow       *_window;
         sf::Keyboard::Key       _leaveKey;
         SceneManager            _sceneManager;
         InputManager            _inputManager;
