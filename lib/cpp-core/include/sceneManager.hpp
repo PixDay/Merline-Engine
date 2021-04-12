@@ -17,6 +17,8 @@ class SceneManager
         SceneManager();
        ~SceneManager() = default;
 
+        void clearSceneContent(std::string const &name);
+
         /* ADDERS */
         void addScene(std::string const &name);
         void addObject(GameObject *object);
