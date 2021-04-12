@@ -17,8 +17,9 @@ App::App():
 void App::run(void)
 {
     sf::Event event;
+    bool state = true;
 
-    while (_window->isOpen()) {
+    while (_window->isOpen() && state) {
         while (_window->pollEvent(event)) {
             if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(_leaveKey))
                 _window->close();
@@ -26,13 +27,13 @@ void App::run(void)
         if (fpsPassed()) {
             _window->clear(sf::Color::Black);
             _sceneManager.onCollideTrigger();
-            draw();
+            state = draw();
             _window->display();
         }
     }
 }
 
-void App::draw(void)
+bool App::draw(void)
 {
     for (auto displayableElement : _sceneManager.getScenes()[_sceneManager.getCurrentScene()]->getGameObjects()) {
         displayableElement->update();
@@ -43,7 +44,10 @@ void App::draw(void)
         if (displayableElement->getType() == "TextObject" && (static_cast<TextObject *>(displayableElement)->getActive())) {
             _window->draw(static_cast<TextObject *>(displayableElement)->getRender());
         }
+        if (displayableElement->getTag() == STOP_RUN)
+            return false;
     }
+    return true;
 }
 
 /* ADDERS */
