@@ -19,10 +19,10 @@ INCLUDE_DIRECTORIES (
 
 ADD_EXECUTABLE(${APP_EXE}
     source/dodger.cpp
+    source/timer.cpp
     source/player.cpp
     source/ennemies.cpp
     source/collision.cpp
-    source/timer.cpp
 )
 
 TARGET_LINK_LIBRARIES(${APP_EXE}
