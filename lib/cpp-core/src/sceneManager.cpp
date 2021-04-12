@@ -15,6 +15,16 @@ _currentScene(0)
     //_window->setVerticalSyncEnabled(true);
 }
 
+void SceneManager::clearSceneContent(std::string const &name)
+{
+    size_t index = getScene(name);
+
+    while (!_scenes[index]->getGameObjects().empty())
+    {
+        _scenes[index]->deleteObject(0);
+    }
+}
+
 /* ADDERS */
  
 void SceneManager::addScene(std::string const &name)
