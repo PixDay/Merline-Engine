@@ -37,6 +37,12 @@ void Scene::deleteObject(std::string const &tag)
     }
 }
 
+void Scene::deleteObject(size_t const &index)
+{
+    delete _gameObjects[index];
+    _gameObjects.erase(_gameObjects.begin() + index);
+}
+
 void Scene::eraseObject(std::string const &tag)
 {
     size_t iterator = 0;
