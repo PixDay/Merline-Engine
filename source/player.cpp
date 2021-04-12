@@ -35,5 +35,5 @@ void playerController(GameObject *self)
 
 void playerCollision(GameObject *self, GameObject *collided)
 {
-    exit(0);
+    self->setTag(STOP_RUN);
 }

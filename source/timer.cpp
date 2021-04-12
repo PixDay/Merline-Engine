@@ -8,13 +8,12 @@ void updateTimer(GameObject *self)
     static_cast<TextObject *>(self)->setText(time);
 }
 
-void gameTimer(App &app, DisplayableObject *player)
+void gameTimer(App &app)
 {
     TextObject *timer = new TextObject("0.0");
     sf::Vector2f position = {940.0f, 20.0f};
 
     static_cast<GameObject *>(timer)->setFunction(&updateTimer);
-    static_cast<DisplayableObject *>(timer)->addObject(player);
     timer->setPosition(position);
     timer->setSize(50);
     app.addObject(timer);

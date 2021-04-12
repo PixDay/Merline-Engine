@@ -1,8 +1,6 @@
-#include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include "core.h"
-#include "ui.hpp"
 
 void secondPlayer(GameObject *self)
 {
@@ -109,7 +107,7 @@ int main()
     botScore->setSize(50);
     ball->addObject(playerScore);
     ball->addObject(botScore);
-    srand (time(NULL));
+    srand(time(NULL));
     app.addScene("Game");
     app.setCurrentScene("Game");
     app.addObject(new DisplayableObject("img/background.png"));
