@@ -9,6 +9,7 @@ void playerController(GameObject *self);
 void playerCollision(GameObject *self, GameObject *collided);
 
 void gameTimer(App &app);
+void updateTimer(GameObject *self);
 
 void ennemyMovement(GameObject *self);
 void createEnnemies(App &app);
