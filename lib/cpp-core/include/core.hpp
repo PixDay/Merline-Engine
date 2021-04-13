@@ -21,7 +21,7 @@ class App
         App();
        ~App() = default;
 
-        void run(void);
+        bool run(void);
 
         /* ADDERS */
         void addScene(std::string const &name);
