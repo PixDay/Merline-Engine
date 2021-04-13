@@ -14,7 +14,7 @@ App::App():
 {
 };
 
-void App::run(void)
+bool App::run(void)
 {
     sf::Event event;
     bool state = true;
@@ -23,6 +23,7 @@ void App::run(void)
         while (_window->pollEvent(event)) {
             if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(_leaveKey))
                 _window->close();
+                return false;
         }
         if (fpsPassed()) {
             _window->clear(sf::Color::Black);
@@ -31,6 +32,7 @@ void App::run(void)
             _window->display();
         }
     }
+    return true;
 }
 
 bool App::draw(void)
