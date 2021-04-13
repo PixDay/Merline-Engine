@@ -4,16 +4,17 @@ int main(void)
 {
     App app = App();
     DisplayableObject *player = new DisplayableObject("img/green.png");
+    bool state = true;
 
     srand(time(NULL));
     app.addScene("Game");
     app.setCurrentScene("Game");
-    while (true) {
+    while (state) {
         playerSetting(app, player);
         gameTimer(app);
         createEnnemies(app);
         createCollisionList(app);
-        app.run();
+        state = app.run();
         app.getSceneManager().clearSceneContent("Game");
         player = new DisplayableObject("img/green.png");
     }
