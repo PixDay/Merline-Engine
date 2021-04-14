@@ -18,4 +18,5 @@ int main(void)
         app.getSceneManager().clearSceneContent("Game");
         player = new DisplayableObject("img/green.png");
     }
+    app.getSceneManager().clearSceneContent("Game");
 }
