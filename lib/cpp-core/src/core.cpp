@@ -21,9 +21,10 @@ bool App::run(void)
 
     while (_window->isOpen() && state) {
         while (_window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(_leaveKey))
+            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(_leaveKey)) {
                 _window->close();
                 return false;
+            }
         }
         if (fpsPassed()) {
             _window->clear(sf::Color::Black);
