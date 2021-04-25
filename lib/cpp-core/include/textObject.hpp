@@ -22,7 +22,7 @@ class TextObject : public DisplayableObject
         void setFont(std::string const &fontPath);
         void setColor(size_t color);
         void setPosition(sf::Vector2f const &position);
-        void setSize(size_t const &size);
+        void setSize(unsigned int const &size);
 
         /* GETTERS */
         std::string getText(void)   const;
