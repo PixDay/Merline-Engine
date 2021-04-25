@@ -12,6 +12,7 @@ App::App():
     _leaveKey(sf::Keyboard::Key::Escape),
     _fps(144)
 {
+    _window->setVerticalSyncEnabled(true);
 };
 
 bool App::run(void)
