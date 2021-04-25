@@ -73,7 +73,6 @@ endif()
 # add options to select which modules to build
 sfml_set_option(SFML_BUILD_WINDOW TRUE BOOL "TRUE to build SFML's Window module. This setting is ignored, if the graphics module is built.")
 sfml_set_option(SFML_BUILD_GRAPHICS TRUE BOOL "TRUE to build SFML's Graphics module.")
-sfml_set_option(SFML_BUILD_AUDIO TRUE BOOL "TRUE to build SFML's Audio module.")
 sfml_set_option(SFML_BUILD_NETWORK TRUE BOOL "TRUE to build SFML's Network module.")
 
 # add an option for building the API documentation
@@ -286,7 +285,7 @@ sfml_set_option(SFML_INSTALL_PKGCONFIG_FILES ${SFML_INSTALL_PKGCONFIG_DEFAULT} B
 if(SFML_INSTALL_PKGCONFIG_FILES)
     sfml_set_option(SFML_PKGCONFIG_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}/${SFML_PKGCONFIG_DIR}" PATH "Install directory for SFML's pkg-config .pc files")
 
-    foreach(sfml_module IN ITEMS all system window graphics audio network)
+    foreach(sfml_module IN ITEMS all system window graphics network)
         CONFIGURE_FILE(
             "tools/pkg-config/sfml-${sfml_module}.pc.in"
             "tools/pkg-config/sfml-${sfml_module}.pc"
