@@ -129,6 +129,7 @@ GameObject *SceneManager::getGameObject(std::string const &tag) const
         if (gameObject->getTag() == tag)
             return gameObject;
     }
+    return nullptr;
 }
 
 void SceneManager::onCollideTrigger(void)
