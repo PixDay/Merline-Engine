@@ -59,7 +59,7 @@ Time ClockImpl::getCurrentTime()
     static LARGE_INTEGER frequency = getFrequency();
 
     // Detect if we are on Windows XP or older
-    static bool oldWindows = isWindowsXpOrOlder();
+    static bool oldWindows = false;
 
     LARGE_INTEGER time;
 
