@@ -6,7 +6,7 @@ int main(void)
     DisplayableObject *player = new DisplayableObject("img/green.png");
     bool state = true;
 
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     app.addScene("Game");
     app.setCurrentScene("Game");
     while (state) {
