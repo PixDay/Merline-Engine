@@ -59,7 +59,7 @@ void TextObject::setPosition(sf::Vector2f const &position)
     _render.setPosition(position);
 }
 
-void TextObject::setSize(size_t const &size)
+void TextObject::setSize(unsigned int const &size)
 {
     _render.setCharacterSize(size);
 }
