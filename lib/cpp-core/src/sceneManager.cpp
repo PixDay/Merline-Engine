@@ -11,8 +11,7 @@
 SceneManager::SceneManager():
 _currentScene(0)
 {
-    this->addScene("SFML-Engine-default");
-    //_window->setVerticalSyncEnabled(true);
+    this->addScene("default");
 }
 
 void SceneManager::clearSceneContent(std::string const &name)
@@ -32,11 +31,6 @@ void SceneManager::addScene(std::string const &name)
     Scene *scene = new Scene(name);
 
     _scenes.emplace_back(scene);
-   // _scenes[this->getScene(name)]->addObject(
-   //     dynamic_cast<GameObject *>(
-   //     dynamic_cast<DisplayableObject *>(_cursor)
-   //     )
-   // );
 }
 
 void SceneManager::addObject(GameObject *object)
