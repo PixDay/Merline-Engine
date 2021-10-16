@@ -1,4 +1,4 @@
-#include "core.h"
+#include "shooter.h"
 
 int main(void)
 {
