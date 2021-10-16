@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
+#include <iostream>
 #include "core.h"
 
 void secondPlayer(GameObject *self)
@@ -71,6 +72,20 @@ void ballCollision(GameObject *self, GameObject *collided)
     self->setDirection(direction);
 }
 
+void cameraMovement(GameObject *self)
+{
+    float angle = static_cast<Camera *>(self)->getRotation();
+    sf::Vector2f position = {0.0f, 0.0f};
+    /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        position.x -= 5.0f;
+        //static_cast<Camera *>(self)->setRotation(25.0f);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        position.x += 5.0f;*/
+    static_cast<Camera *>(self)->move(position);
+    angle += 0.05f;
+    static_cast<Camera *>(self)->setRotation(angle);
+}
+
 int main()
 {
     App app = App();
@@ -82,7 +97,7 @@ int main()
     DisplayableObject *line2 = new DisplayableObject("img/line.png");
     DisplayableObject *ball = new DisplayableObject("img/ball.png", &ballMovement);
     sf::Vector2f position = {50.0f, 500.0f};
-
+    GameObject *camera = app.getCamera();
     ball->setTag("Ball");
     ball->setSpeed(5.0f);
     player1->setTag("Player");
@@ -107,6 +122,7 @@ int main()
     botScore->setSize(50);
     ball->addObject(playerScore);
     ball->addObject(botScore);
+    camera->setFunction(&cameraMovement);
     srand(time(NULL));
     app.addScene("Game");
     app.setCurrentScene("Game");
@@ -118,6 +134,7 @@ int main()
     app.addObject(player2);
     app.addObject(playerScore);
     app.addObject(botScore);
+    app.addObject(camera);
     player2->addObject(ball);
     app.addCollisionPair("Ball", "Player");
     app.addCollisionPair("Ball", "Bot");
