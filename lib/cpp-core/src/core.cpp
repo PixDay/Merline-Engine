@@ -8,11 +8,13 @@
 #include "core.hpp"
 
 App::App():
+    _camera(new Camera()),
     _window(new sf::RenderWindow(sf::VideoMode(1920, 1080), "SFML Engine", sf::Style::Fullscreen)),
     _leaveKey(sf::Keyboard::Key::Escape),
     _fps(144)
 {
     _window->setVerticalSyncEnabled(true);
+    _window->setView(_camera->getView());
 };
 
 bool App::run(void)
@@ -31,6 +33,7 @@ bool App::run(void)
             _window->clear(sf::Color::Black);
             _sceneManager.onCollideTrigger();
             state = draw();
+            _window->setView(_camera->getView());
             _window->display();
         }
     }
@@ -42,7 +45,7 @@ bool App::draw(void)
     for (auto displayableElement : _sceneManager.getScenes()[_sceneManager.getCurrentScene()]->getGameObjects()) {
         displayableElement->update();
         if (displayableElement->getType() == "DisplayableObject" && (static_cast<DisplayableObject *>(displayableElement)->getActive())) {
-            static_cast<DisplayableObject *>(displayableElement)->update();
+            //static_cast<DisplayableObject *>(displayableElement)->update();
             _window->draw(*(static_cast<DisplayableObject *>(displayableElement)->getSprite()));
         }
         if (displayableElement->getType() == "TextObject" && (static_cast<TextObject *>(displayableElement)->getActive())) {
@@ -128,4 +131,9 @@ bool App::fpsPassed(void)
         return true;
     }
     return false;
+}
+
+Camera *App::getCamera(void)
+{
+    return this->_camera;
 }
