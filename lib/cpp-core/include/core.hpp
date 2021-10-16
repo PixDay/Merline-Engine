@@ -12,6 +12,7 @@
 #include "textObject.hpp"
 #include "sceneManager.hpp"
 #include "inputManager.hpp"
+#include "camera.hpp"
 
 #define STOP_RUN "STOP_RUN"
 
@@ -42,9 +43,11 @@ class App
         SceneManager getSceneManager(void)  const;
         float        getTick(void);
         bool         fpsPassed(void);
+        Camera      *getCamera(void);
         
     private:
         bool draw(void);
+        Camera                 *_camera;
         sf::RenderWindow       *_window;
         sf::Keyboard::Key       _leaveKey;
         SceneManager            _sceneManager;
