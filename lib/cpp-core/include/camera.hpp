@@ -26,17 +26,17 @@ class Camera : public GameObject
         void setOrigin(sf::Vector2f const &origin);
         void setSize(sf::Vector2f const &size);
         void setRotation(float const &rotation);
-        void setObjectToFollow(GameObject *object);
+        void setObjectToFollow(GameObject const &object);
 
         /* GETTERS */
-        sf::Vector2f    getPosition(void)   const;
-        sf::Vector2f    getOrigin(void)     const;
-        sf::Vector2f    getSize(void)       const;
-        float           getRotation(void)   const;
-        sf::View        getView(void)       const;
-        GameObject     *getToFollow(void)   const;
+        sf::Vector2f            getPosition(void)   const;
+        sf::Vector2f            getOrigin(void)     const;
+        sf::Vector2f            getSize(void)       const;
+        float                   getRotation(void)   const;
+        sf::View                getView(void)       const;
+        GameObject     const   &getToFollow(void)   const;
         
     private:
         sf::View    _view;
-        GameObject *_toFollow;
+        GameObject  _toFollow;
 };

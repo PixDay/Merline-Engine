@@ -53,7 +53,7 @@ void Camera::setRotation(float const &rotation)
     this->_view.setRotation(rotation);
 }
 
-void Camera::setObjectToFollow(GameObject *object)
+void Camera::setObjectToFollow(GameObject const &object)
 {
     this->_toFollow = object;
 }
@@ -84,7 +84,7 @@ sf::View Camera::getView(void) const
     return this->_view;
 }
 
-GameObject *Camera::getToFollow(void) const
+GameObject const &Camera::getToFollow(void) const
 {
     return this->_toFollow;
 }

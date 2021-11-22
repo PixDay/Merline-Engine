@@ -18,9 +18,9 @@ void SceneManager::clearSceneContent(std::string const &name)
 {
     size_t index = getScene(name);
 
-    while (!_scenes[index]->getGameObjects().empty())
+    while (!_scenes[index].getGameObjects().empty())
     {
-        _scenes[index]->deleteObject(0);
+        _scenes[index].deleteObject(0);
     }
 }
 
@@ -28,19 +28,19 @@ void SceneManager::clearSceneContent(std::string const &name)
  
 void SceneManager::addScene(std::string const &name)
 {
-    Scene *scene = new Scene(name);
+    Scene scene = Scene(name);
 
     _scenes.emplace_back(scene);
 }
 
-void SceneManager::addObject(GameObject *object)
+void SceneManager::addObject(GameObject const &object)
 {
-    _scenes[_currentScene]->addObject(object);
+    _scenes[_currentScene].addObject(object);
 }
 
-void SceneManager::addObjectTo(GameObject *object, std::string const &name)
+void SceneManager::addObjectTo(GameObject const &object, std::string const &name)
 {
-    _scenes[this->getScene(name)]->addObject(object);
+    _scenes[this->getScene(name)].addObject(object);
 }
 
 void SceneManager::addCollisionPair(std::string const &tag1, std::string const &tag2)
@@ -57,9 +57,8 @@ void SceneManager::deleteScene(std::string const &name)
     size_t iterator = 0;
 
     for (auto scene : _scenes) {
-        if (scene->getName() == name) {
+        if (scene.getName() == name) {
             _scenes.erase(_scenes.begin() + iterator);
-            delete scene;
             break;
         }
         iterator++;
@@ -91,7 +90,7 @@ void SceneManager::setCurrentScene(std::string const &name)
     size_t iterator = 0;
 
     for (auto scene : _scenes) {
-        if (scene->getName() == name) {
+        if (scene.getName() == name) {
             _currentScene = iterator;
             break;
         }
@@ -101,7 +100,7 @@ void SceneManager::setCurrentScene(std::string const &name)
 
 /* GETTERS */
 
-std::vector<Scene *> SceneManager::getScenes() const
+std::vector<Scene> SceneManager::getScenes() const
 {
     return _scenes;
 }
@@ -116,59 +115,59 @@ size_t SceneManager::getScene(std::string const &name) const
     size_t iterator = 0;
 
     for (auto scene : _scenes) {
-        if (scene->getName() == name)
+        if (scene.getName() == name)
             return iterator;
         iterator++;
     }
     return _currentScene;
 }
 
-GameObject *SceneManager::getGameObject(std::string const &tag) const
+GameObject const &SceneManager::getGameObject(std::string const &tag) const
 {
-    for (auto gameObject : _scenes[_currentScene]->getGameObjects()) {
-        if (gameObject->getTag() == tag)
+    for (auto gameObject : _scenes[_currentScene].getGameObjects()) {
+        if (gameObject.getTag() == tag)
             return gameObject;
     }
-    return nullptr;
+    return _scenes[_currentScene].getGameObjects()[0];
 }
 
 void SceneManager::onCollideTrigger(void)
 {
-    GameObject *collidedObject;
+    GameObject collidedObject;
 
     for (auto pair : _collisionPair) {
-        if (collidedObject = collide(pair.getFirst(), pair.getSecond())) {
-            GameObject *object = getGameObject(pair.getFirst());
-            object->onCollide(collidedObject);
-        }
+        //if (collidedObject = collide(pair.getFirst(), pair.getSecond())) {
+        //    GameObject object = getGameObject(pair.getFirst());
+        //    object.onCollide(collidedObject);
+        //}
     }
 }
 
-GameObject *SceneManager::collide(std::string const &tag1, std::string const &tag2) const
+GameObject const &SceneManager::collide(std::string const &tag1, std::string const &tag2) const
 {
-    DisplayableObject *object1 = nullptr;
-    DisplayableObject *object2 = nullptr;
+    DisplayableObject object1;
+    DisplayableObject object2;
     
-    for (auto object : _scenes[_currentScene]->getGameObjects()) {
-        if (object->getTag() == tag1)
-            object1 = static_cast<DisplayableObject *>(object);
-        if (object->getTag() == tag2)
-            object2 = static_cast<DisplayableObject *>(object);
-        if (object1 != nullptr && object2 != nullptr) {
+    for (auto object : _scenes[_currentScene].getGameObjects()) {
+        if (object.getTag() == tag1)
+            object1 = static_cast<DisplayableObject const &>(object);
+        if (object.getTag() == tag2)
+            object2 = static_cast<DisplayableObject const &>(object);
+        if (object1.getTag() != "default" && object2.getTag() != "default") {
             sf::Rect<float> obj1(
-                object1->getPosition(), 
-                {(float)object1->getSprite()->getTexture()->getSize().x * object1->getScale().x, 
-                (float)object1->getSprite()->getTexture()->getSize().y * object1->getScale().y}
+                object1.getPosition(), 
+                {(float)object1.getSprite().getTexture()->getSize().x * object1.getScale().x, 
+                (float)object1.getSprite().getTexture()->getSize().y * object1.getScale().y}
             );
             sf::Rect<float> obj2(
-                object2->getPosition(), 
-                {(float)object2->getSprite()->getTexture()->getSize().x * object2->getScale().x, 
-                (float)object2->getSprite()->getTexture()->getSize().y * object2->getScale().y}
+                object2.getPosition(), 
+                {(float)object2.getSprite().getTexture()->getSize().x * object2.getScale().x, 
+                (float)object2.getSprite().getTexture()->getSize().y * object2.getScale().y}
             );
             if (obj1.intersects(obj2)) {
                 return object2;
             }
         }
     }
-    return nullptr;
+    return object2;
 }

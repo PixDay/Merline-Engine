@@ -21,8 +21,8 @@ class SceneManager
 
         /* ADDERS */
         void addScene(std::string const &name);
-        void addObject(GameObject *object);
-        void addObjectTo(GameObject *object, std::string const &name);
+        void addObject(GameObject const &object);
+        void addObjectTo(GameObject const &object, std::string const &name);
         void addCollisionPair(std::string const &tag1, std::string const &tag2);
 
         /* DELETERS */
@@ -34,15 +34,15 @@ class SceneManager
         void setCurrentScene(std::string const &name);
 
         /* GETTERS */
-        std::vector<Scene *>    getScenes()                                                 const;
-        size_t                  getCurrentScene()                                           const;
-        size_t                  getScene(std::string const &name)                           const;
-        GameObject             *getGameObject(std::string const &tag)                       const;
-        void                    onCollideTrigger(void);
-        GameObject             *collide(std::string const &tag1, std::string const &tag2)   const;
+        std::vector<Scene>            getScenes()                                                 const;
+        size_t                        getCurrentScene()                                           const;
+        size_t                        getScene(std::string const &name)                           const;
+        GameObject             const &getGameObject(std::string const &tag)                       const;
+        void                          onCollideTrigger(void);
+        GameObject             const &collide(std::string const &tag1, std::string const &tag2)   const;
 
     private:
         size_t                  _currentScene;
-        std::vector<Scene *>    _scenes;
+        std::vector<Scene>      _scenes;
         std::vector<Pair>       _collisionPair;
 };

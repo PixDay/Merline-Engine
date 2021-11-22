@@ -26,8 +26,8 @@ class App
 
         /* ADDERS */
         void addScene(std::string const &name);
-        void addObject(GameObject *object);
-        void addObjectTo(GameObject *object, std::string const &name);
+        void addObject(GameObject const &object);
+        void addObjectTo(GameObject const &object, std::string const &name);
         void addInput(Input *input);
         void addInput(std::string const &keyName, sf::Keyboard::Key key);
         void addCollisionPair(std::string const &tag1, std::string const &tag2);
@@ -40,14 +40,14 @@ class App
         void setCurrentScene(std::string const &name);
         
         /* GETTERS */
-        SceneManager getSceneManager(void)  const;
-        float        getTick(void);
-        bool         fpsPassed(void);
-        Camera      *getCamera(void);
+        SceneManager       getSceneManager(void)  const;
+        float              getTick(void);
+        bool               fpsPassed(void);
+        Camera      const &getCamera(void);
         
     private:
         bool draw(void);
-        Camera                 *_camera;
+        Camera                  _camera;
         sf::RenderWindow       *_window;
         sf::Keyboard::Key       _leaveKey;
         SceneManager            _sceneManager;

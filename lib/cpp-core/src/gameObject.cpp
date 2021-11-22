@@ -24,7 +24,7 @@ _onCollide(nullptr)
 {
 }
 
-GameObject::GameObject(std::function<void(GameObject *)> function):
+GameObject::GameObject(std::function<void(GameObject const &)> function):
 _tag("default"),
 _type("GameObject"),
 _position({0.0f, 0.0f}),
@@ -43,14 +43,14 @@ _onCollide(nullptr)
 
 void GameObject::update(void)
 {
-    if (_function != nullptr)
-        _function(this);
+    //if (_function != nullptr)
+    //    _function(this);
 }
 
-void GameObject::onCollide(GameObject *object)
+void GameObject::onCollide(GameObject const &object)
 {
-    if (_onCollide != nullptr)
-        _onCollide(this, object);
+    //if (_onCollide != nullptr)
+    //    _onCollide(this, object);
 }
 
 /* SETTERS */
@@ -117,12 +117,12 @@ void GameObject::setActive(bool const &active)
     _active = active;
 }
 
-void GameObject::setFunction(std::function<void(GameObject *)> function)
+void GameObject::setFunction(std::function<void(GameObject const &)> function)
 {
     _function = function;
 }
 
-void GameObject::setOnCollide(std::function<void(GameObject *, GameObject *)> onCollide)
+void GameObject::setOnCollide(std::function<void(GameObject const &, GameObject const &)> onCollide)
 {
     _onCollide = onCollide;
 }

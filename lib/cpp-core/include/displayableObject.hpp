@@ -14,14 +14,14 @@ class DisplayableObject : public GameObject
   public:
     DisplayableObject() = default;
     DisplayableObject(std::string const &texture);
-    DisplayableObject(std::string const &texture, std::function<void(GameObject *)>);
+    DisplayableObject(std::string const &texture, std::function<void(GameObject const &)>);
    ~DisplayableObject();
 
     void update();
     void resetTimer(void);
     
     /* ADDERS */
-    void addObject(DisplayableObject *object);
+    void addObject(DisplayableObject const &object);
 
     /* DELETERS */
     void deleteObject(std::string const &tag);
@@ -39,18 +39,18 @@ class DisplayableObject : public GameObject
     void setVisibleTime(float time);
 
     /* GETTERS */
-    sf::Sprite *                        getSprite(void)     const;
-    sf::Texture                         getTexture(void)    const;
-    float                               getTime(void)       const;
-    sf::Vector2f                        getDimension(void)  const;
-    float                               getAngle(void)      const;
-    std::vector<DisplayableObject *>    getObjects()        const;
+    sf::Sprite             const               &getSprite(void)     const;
+    sf::Texture                                 getTexture(void)    const;
+    float                                       getTime(void)       const;
+    sf::Vector2f                                getDimension(void)  const;
+    float                                       getAngle(void)      const;
+    std::vector<DisplayableObject>              getObjects()        const;
 
 private:
-    sf::Sprite *                        _sprite;
-    sf::Texture                         _texture;
-    sf::Clock                           _clock;
-    float                               _angle;
-    float                               _visibleTime;
-    std::vector<DisplayableObject *>    _objects;
+    sf::Sprite                                _sprite;
+    sf::Texture                               _texture;
+    sf::Clock                                 _clock;
+    float                                     _angle;
+    float                                     _visibleTime;
+    std::vector<DisplayableObject>            _objects;
 };

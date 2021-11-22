@@ -6,15 +6,16 @@
 */
 
 #include "core.hpp"
+#include <iostream>
 
 App::App():
-    _camera(new Camera()),
+    _camera(Camera()),
     _window(new sf::RenderWindow(sf::VideoMode(1920, 1080), "SFML Engine", sf::Style::Fullscreen)),
     _leaveKey(sf::Keyboard::Key::Escape),
     _fps(144)
 {
     _window->setVerticalSyncEnabled(true);
-    _window->setView(_camera->getView());
+    _window->setView(_camera.getView());
 };
 
 bool App::run(void)
@@ -33,7 +34,7 @@ bool App::run(void)
             _window->clear(sf::Color::Black);
             _sceneManager.onCollideTrigger();
             state = draw();
-            _window->setView(_camera->getView());
+            _window->setView(_camera.getView());
             _window->display();
         }
     }
@@ -42,16 +43,21 @@ bool App::run(void)
 
 bool App::draw(void)
 {
-    for (auto displayableElement : _sceneManager.getScenes()[_sceneManager.getCurrentScene()]->getGameObjects()) {
-        displayableElement->update();
-        if (displayableElement->getType() == "DisplayableObject" && (static_cast<DisplayableObject *>(displayableElement)->getActive())) {
-            //static_cast<DisplayableObject *>(displayableElement)->update();
-            _window->draw(*(static_cast<DisplayableObject *>(displayableElement)->getSprite()));
+    std::cout << "WHAT" << std::endl;
+    for (auto displayableElement : _sceneManager.getScenes()[_sceneManager.getCurrentScene()].getGameObjects()) {
+        std::cout << "WHAT UPDATE" << std::endl;
+        displayableElement.update();
+        std::cout << "WHAT DISPLAY" << std::endl;
+        if (displayableElement.getType() == "DisplayableObject" && (static_cast<DisplayableObject const &>(displayableElement).getActive())) {
+            static_cast<DisplayableObject &>(displayableElement).update();
+            _window->draw((static_cast<DisplayableObject &>(displayableElement).getSprite()));
         }
-        if (displayableElement->getType() == "TextObject" && (static_cast<TextObject *>(displayableElement)->getActive())) {
-            _window->draw(static_cast<TextObject *>(displayableElement)->getRender());
+        std::cout << "WHAT BEFORE TEXT" << std::endl;
+        if (displayableElement.getType() == "TextObject" && (static_cast<TextObject const &>(displayableElement).getActive())) {
+            _window->draw(static_cast<TextObject const &>(displayableElement).getRender());
         }
-        if (displayableElement->getTag() == STOP_RUN)
+        std::cout << "WHAT AFTER TEXT" << std::endl;
+        if (displayableElement.getTag() == STOP_RUN)
             return false;
     }
     return true;
@@ -64,12 +70,12 @@ void App::addScene(std::string const &name)
     _sceneManager.addScene(name);
 }
 
-void App::addObject(GameObject *object)
+void App::addObject(GameObject const &object)
 {
     _sceneManager.addObject(object);
 }
 
-void App::addObjectTo(GameObject *object, std::string const &name)
+void App::addObjectTo(GameObject const &object, std::string const &name)
 {
     _sceneManager.addObjectTo(object, name);
 }
@@ -133,7 +139,7 @@ bool App::fpsPassed(void)
     return false;
 }
 
-Camera *App::getCamera(void)
+Camera const &App::getCamera(void)
 {
     return this->_camera;
 }
