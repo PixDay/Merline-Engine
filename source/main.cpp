@@ -7,8 +7,8 @@ int main()
     GameObject *camera = app.getCamera();
 
     initScenes(app);
-    initPlayer(app);
-    initEnemy(app);
+    //initPlayer(app);
+    //initEnemy(app);
     app.addObject(camera);
     app.run();
     return 0;

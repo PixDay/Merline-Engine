@@ -19,6 +19,10 @@ INCLUDE_DIRECTORIES (
 
 ADD_EXECUTABLE(${APP_EXE}
     source/main.cpp
+    source/initScene.cpp
+    source/menu.cpp
+    source/game.cpp
+    source/options.cpp
 )
 
 TARGET_LINK_LIBRARIES(${APP_EXE}

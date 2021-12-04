@@ -9,10 +9,10 @@ void instantiateMenu(App &app) {
     playButton->setFunction(playButtonFunction);
     optionButton->setFunction(optionButtonFunction);
     exitButton->setFunction(exitButtonFunction);
-    app.addObject(background);
-    app.addObject(playButton);
-    app.addObject(optionButton);
-    app.addObject(exitButton);
+    app.addObjectTo(background, "menu");
+    app.addObjectTo(playButton, "menu");
+    app.addObjectTo(optionButton, "menu");
+    app.addObjectTo(exitButton, "menu");
 }
 
 void playButtonFunction(GameObject *self)

@@ -21,14 +21,15 @@ void optionsButtonFunction  (GameObject *self);
 void exitButtonFunction     (GameObject *self);
 
 // Function : game.cpp
-void instantiateGame        (App &app);
-void instantiateGameOver    (App &app);
-void QSpellFunction         (App &app);
-void WSpellFunction         (App &app);
-void ESpellFunction         (App &app);
-void RSpellFunction         (App &app);
-void DSpellFunction         (App &app);
-void FSpellFunction         (App &app);
+void instantiateGame        (GameObject *self);
+void instantiateGameOver    (GameObject *self);
+void QSpellFunction         (GameObject *self);
+void WSpellFunction         (GameObject *self);
+void ESpellFunction         (GameObject *self);
+void RSpellFunction         (GameObject *self);
+void DSpellFunction         (GameObject *self);
+void FSpellFunction         (GameObject *self);
+void menuButtonFunction     (GameObject *self);
 
 // Function : options.cpp
 void instantiateOptions     (App &app);
