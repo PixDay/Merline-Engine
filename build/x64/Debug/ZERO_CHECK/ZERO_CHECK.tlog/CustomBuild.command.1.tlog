@@ -1,0 +1,10 @@
+^C:\USERS\ADRIE\DESKTOP\ADRIEN\CODE\MERLINE-ENGINE\BUILD\CMAKEFILES\37A1749E8359394E0EED347DBB4E6EBE\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/adrie/Desktop/Adrien/Code/Merline-Engine -BC:/Users/adrie/Desktop/Adrien/Code/Merline-Engine/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/adrie/Desktop/Adrien/Code/Merline-Engine/build/APP.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
