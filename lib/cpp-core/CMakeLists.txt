@@ -16,6 +16,7 @@ ADD_LIBRARY(${LIB_NAME} STATIC
     src/inputManager.cpp
     src/pair.cpp
     src/textObject.cpp
+    src/camera.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(${LIB_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
