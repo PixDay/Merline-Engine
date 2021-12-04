@@ -1,4 +1,4 @@
-#include "core.h"
+#include "shooter.h"
 
 int main()
 {
@@ -6,11 +6,9 @@ int main()
     TextObject *HelloWorld = new TextObject("Hello World");
     GameObject *camera = app.getCamera();
 
-    initScene(app);
+    initScenes(app);
     initPlayer(app);
     initEnemy(app);
-    initOptions(app);
-    initMenu(app);
     app.addObject(camera);
     app.run();
     return 0;
