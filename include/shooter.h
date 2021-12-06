@@ -21,8 +21,8 @@ void optionsButtonFunction  (GameObject *self);
 void exitButtonFunction     (GameObject *self);
 
 // Function : game.cpp
-void instantiateGame        (GameObject *self);
-void instantiateGameOver    (GameObject *self);
+void instantiateGame        (App &app);
+void instantiateGameOver    (App &app);
 void QSpellFunction         (GameObject *self);
 void WSpellFunction         (GameObject *self);
 void ESpellFunction         (GameObject *self);

@@ -3,7 +3,6 @@
 int main()
 {
     App app = App();
-    TextObject *HelloWorld = new TextObject("Hello World");
     GameObject *camera = app.getCamera();
 
     initScenes(app);
